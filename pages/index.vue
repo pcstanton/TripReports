@@ -10,6 +10,14 @@
         <!--tooltip for asking user to input trip report-->
         <div class="col-6 col-md-4">
           <a href="#" data-toggle="tooltip" title="Click to Enter A New Report">{{ last }}</a>
+          <section class="container" v-if="routes">
+            <tripreports
+              v-for="route of routes"
+              :key="route.id"
+              :route="route"
+            />
+          </section>  
+
         </div>
       </div>
     </main>
@@ -17,14 +25,35 @@
 </template>
 
 <script>
+
+import axios from "axios";
+import tripreports from '@/components/tripreports.vue'
+
 export default {
   name: "home",
+  components: {
+    tripreports
+  },
   data() {
     return {
       map: "Insert Map of Trip Reports",
       last: "Latest Trip Reports",
-      display: true
+      routes: null,
+      display: true,
+      loading: true,
+      errored: false
     };
+  },
+   mounted () {
+    axios
+      .get('https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=47.61&lon=-122.18&maxDistance=10&minDiff=5.6&maxDiff=5.10&key=200528804-4262d8820c8f7a6f9b2a2efe546a51e7')
+      .then(response => (this.routes = response.data))
+      .catch(error => {
+        console.error(error)
+        this.errored = true 
+      })
+      .finally(() => this.loading = false)
+
   }
 };
 </script>
