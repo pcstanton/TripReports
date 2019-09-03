@@ -10,6 +10,7 @@
         <!--tooltip for asking user to input trip report-->
         <div class="col-6 col-md-4">
           <a href="#" data-toggle="tooltip" title="Click to Enter A New Report">{{ last }}</a>
+          <p>{{info}}</p>
         </div>
       </div>
     </main>
@@ -23,6 +24,7 @@ export default {
     return {
       map: "Insert Map of Trip Reports",
       last: "Latest Trip Reports",
+      info: "from API",
       display: true
     };
   }
