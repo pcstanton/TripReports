@@ -1,9 +1,11 @@
 <template>
   <article class="report">
-    <img :src="route.imgSmall" :alt="route.name" class="img">
+   
     <h2 class="climb__title">{{route.name}}</h2>
-    <p class="climb_rating">{{route.rating}}</p>
-    <p class="location">{{route.location}}</p>
+    <h3 class="climb__type">Type {{route.type}}</h3> 
+    <p class="climb_rating">Rating {{route.rating}}</p>
+    <p class="climb_stars">Stars {{route.stars}}</p>
+    <img :src="route.imgSqSmall" :alt="route.name" class="img"> 
 
     
   </article>
@@ -18,3 +20,12 @@ export default {
 
 }
 </script>
+
+<style lang="scss">
+.report {
+  margin: 1rem;
+  border: 1px solid green;
+
+}
+
+</style>
